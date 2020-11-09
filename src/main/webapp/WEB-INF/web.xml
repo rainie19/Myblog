@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+  <display-name>Macie Blog</display-name>
+  <description>默认欢迎列表</description>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <description>设置session有效时间</description>
+  <session-config>
+    <session-timeout>-1</session-timeout>
+  </session-config>
+<listener>
+  <listener-class>com.macie.config.listener.GlobalWebInitListener</listener-class>
+</listener>
+  <filter>
+    <filter-name>GlobalHttpHeaderFilter</filter-name>
+    <filter-class>com.macie.config.filter.GlobalHttpHeaderFilter</filter-class>
+    <init-param>
+      <param-name>CharsetEncoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>ContentType</param-name>
+      <param-value>application/json</param-value>
+    </init-param>
+    <init-param>
+      <description>部署时根目录</description>
+      <param-name>baseUrl</param-name>
+      <param-value>/</param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>com.macie.config.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>GlobalHttpHeaderFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>/publishArticle</url-pattern>
+    <url-pattern>/deleteArticle</url-pattern>
+    <url-pattern>/modifyUserInfo</url-pattern>
+    <url-pattern>/deleteCategory</url-pattern>
+    <url-pattern>/deleteTag</url-pattern>
+  </filter-mapping>
+</web-app>

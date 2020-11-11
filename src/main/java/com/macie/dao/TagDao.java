@@ -31,7 +31,15 @@ public interface TagDao {
     //public int updateTagsByArticleTitle(String articleTitle, String tagName);
 
     /**
+     * 获取标签总数
+     *
+     * @return
+     */
+    public Long countAllTags();
+
+    /**
      * 删除文章下所有tag
+     *
      * @param articleId
      * @return
      */

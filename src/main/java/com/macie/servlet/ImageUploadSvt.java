@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * 上传图片
+ *
  * @author Macie
  * @date 2020/11/8 -23:31
  */

@@ -10,17 +10,26 @@ import java.util.ArrayList;
  */
 public interface CategoryDao {
     /**
-     *
      * @return 所有分类
      */
     public ArrayList<CategoryVo> retrieveAllCategories();
 
+
+    /**
+     * 获取分类总数
+     *
+     * @return
+     */
+    public Long countAllCategories();
+
     /**
      * 将分类下的所有文章移到默认分类
+     *
      * @param categoryId
      * @return
      */
     public int updateCategory2Default(Integer categoryId);
+
     /**
      *
      * @param categoryId

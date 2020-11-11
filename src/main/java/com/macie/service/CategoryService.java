@@ -2,20 +2,28 @@ package com.macie.service;
 
 import com.macie.bean.vo.CategoryVo;
 import com.macie.dao.CategoryDao;
+import com.macie.dao.daoImpl.ArticleDaoImpl;
 import com.macie.dao.daoImpl.CategoryDaoImpl;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 /**
  * @author Macie
  * @date 2020/9/29 -16:37
  */
 public class CategoryService implements CategoryDao {
-    CategoryDaoImpl categoryDaoImpl = new CategoryDaoImpl();
+    private static final CategoryDaoImpl categoryDaoImpl = new CategoryDaoImpl();
+    private static final ArticleDaoImpl articleDaoImpl = new ArticleDaoImpl();
 
     @Override
     public ArrayList<CategoryVo> retrieveAllCategories() {
         return categoryDaoImpl.retrieveAllCategories();
+    }
+
+    @Override
+    public Long countAllCategories() {
+        return categoryDaoImpl.countAllCategories();
     }
 
     @Override
@@ -35,7 +43,19 @@ public class CategoryService implements CategoryDao {
 
     @Override
     public Boolean isCategoryExits(String categoryName) {
-        return null;
+        return categoryDaoImpl.isCategoryExits(categoryName);
+    }
+
+    public TreeMap<String, Long> countArticlesEachCategory(ArrayList<CategoryVo> categoryVos) {
+        TreeMap<String, Long> countMap = new TreeMap<>();
+        if (categoryVos != null) {
+            for (CategoryVo category : categoryVos) {
+                String categoryName = category.getCategoryName();
+                Long count = articleDaoImpl.countAllArticles("category", categoryName);
+                countMap.put(categoryName, count);
+            }
+        }
+        return countMap;
     }
 
 }

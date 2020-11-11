@@ -158,18 +158,18 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public Long getArticlesTotalCount() {
+    public Long countAllArticles() {
         String sql = "SELECT COUNT(*) FROM " + DatabaseConsts.TABLE_ARTICLE_DETAILS;
         return DbRetrieveUtils.retrieveBasicTypeByParams(sql, null, Long.class);
     }
 
     @Override
-    public Long getArticlesTotalCount(String type, String value) {
+    public Long countAllArticles(String type, String value) {
         String sql = "SELECT COUNT(*) FROM " + DatabaseConsts.TABLE_ARTICLE_DETAILS;
-        if("category".equals(type)) {
+        if ("category".equals(type)) {
             sql += " WHERE " + DatabaseConsts.CATEGORY_NAME + " = ?";
         }
-        if("tag".equals(type)) {
+        if ("tag".equals(type)) {
             sql = "SELECT COUNT(*) FROM " + DatabaseConsts.TABLE_TAGS + " WHERE " + DatabaseConsts.TAG_NAME + " = ?";
         }
         ArrayList<Object> list = new ArrayList<>();

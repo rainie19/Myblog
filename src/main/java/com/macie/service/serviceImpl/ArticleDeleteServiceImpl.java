@@ -9,12 +9,13 @@ import com.macie.service.ArticleDeleteService;
  * @date 2020/10/29 -18:12
  */
 public class ArticleDeleteServiceImpl implements ArticleDeleteService {
-    public static final ArticleDaoImpl articleDaoImpl = new ArticleDaoImpl();
-    public static final TagDaoImpl tagDaoImpl = new TagDaoImpl();
+    private static final ArticleDaoImpl articleDaoImpl = new ArticleDaoImpl();
+    private static final TagDaoImpl tagDaoImpl = new TagDaoImpl();
+
     @Override
     public int deleteArticle(Integer articleId) {
         int ret = -1;
-        if(articleId == null) {
+        if (articleId == null) {
             return ret;
         }
         ret = articleDaoImpl.deleteArticle(articleId);

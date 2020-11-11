@@ -1,8 +1,7 @@
 package com.macie.servlet;
 
-import com.macie.bean.vo.CategoryVo;
 import com.macie.helper.JsonReponseHelper;
-import com.macie.service.CategoryService;
+import com.macie.service.AllCountService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,30 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
- * 获取所有分类
+ * 获取概览文章,分类，标签数
+ *
  * @author Macie
- * @date 2020/9/29 -17:14
+ * @date 2020/10/23 -18:58
  */
-@WebServlet("/getAllCategories")
-public class CategorySvt extends HttpServlet {
+@WebServlet("/getAllCount")
+public class AllCountSvt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-
-        CategoryService categoryService = new CategoryService();
-        ArrayList<CategoryVo> categoryVos = categoryService.retrieveAllCategories();
-        TreeMap<String, Long> articlesCount = null;
-        if (categoryVos != null) {
-            articlesCount = categoryService.countArticlesEachCategory(categoryVos);
-        }
+        AllCountService articlesCountService = new AllCountService();
+        TreeMap<String, Long> countMap = articlesCountService.getAllCount();
         JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseData("categories", categoryVos);
-        jsonReponse.setResponseData("articlesCount", articlesCount);
-        jsonReponse.setResponseOK();
+        jsonReponse.setResponseOK("AllCount", countMap);
 
         out.println(jsonReponse);
     }
@@ -44,4 +36,5 @@ public class CategorySvt extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
     }
+
 }

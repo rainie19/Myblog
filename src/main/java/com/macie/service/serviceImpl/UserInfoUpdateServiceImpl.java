@@ -6,10 +6,10 @@ import com.macie.service.UserInfoUpdateService;
 
 /**
  * @author Macie
- * @date 2020/12/2 -21:08
+ * @date 2020/11/2 -21:08
  */
 public class UserInfoUpdateServiceImpl implements UserInfoUpdateService {
-    UserInfoDaoImpl userInfoDao =  new UserInfoDaoImpl();
+    private static final UserInfoDaoImpl userInfoDao = new UserInfoDaoImpl();
 
     @Override
     public Boolean updateProfile(UserInfoVo userInfoVo, String oldUserName){

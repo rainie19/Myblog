@@ -27,17 +27,25 @@ public class ArticleSvt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        Integer queryPage = null, pageSize = null;
+        System.out.println(queryPage);
         String queryType = request.getParameter("queryType");
-        Integer queryPage = Integer.valueOf(request.getParameter("queryPage"));
         String queryName = request.getParameter(queryType);
-        Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
-
+        if (request.getParameter("queryPage") != null) {
+            queryPage = Integer.valueOf(request.getParameter("queryPage"));
+        }
+        if (request.getParameter("pageSize") != null) {
+            pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        }
         ArticleServiceImpl articleService = new ArticleServiceImpl();
         TagServiceImpl tagService = new TagServiceImpl();
 
         Long totalCount = articleService.countArticles(queryType, queryName);
         ArrayList<ArticleVo> articleVos = articleService.listArticles(queryType, queryPage, pageSize, queryName);
-        TreeMap<Integer, ArrayList<TagVo>> articleTagMap = tagService.getArticleTagMap(articleVos);
+        TreeMap<Integer, ArrayList<TagVo>> articleTagMap = null;
+        if (articleVos != null) {
+            articleTagMap = tagService.getArticleTagMap(articleVos);
+        }
         JsonReponseHelper jsonReponse = new JsonReponseHelper();
         jsonReponse.setResponseData("articles", articleVos);
         jsonReponse.setResponseData("articleTotalCount", totalCount);

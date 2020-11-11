@@ -74,13 +74,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Long countArticles(String queryType, String queryName) {
-        Long totalCount = articleDaoImpl.getArticlesTotalCount();
+        Long totalCount = articleDaoImpl.countAllArticles();
         if("category".equals(queryType) && queryName != null){
 
-            totalCount = articleDaoImpl.getArticlesTotalCount("category", queryName);
+            totalCount = articleDaoImpl.countAllArticles("category", queryName);
         }
         else if("tag".equals(queryType) && queryName != null){
-            totalCount = articleDaoImpl.getArticlesTotalCount("tag", queryName);
+            totalCount = articleDaoImpl.countAllArticles("tag", queryName);
         }
         return totalCount;
     }

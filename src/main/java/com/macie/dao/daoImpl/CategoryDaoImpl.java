@@ -59,9 +59,15 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
+    public Long countAllCategories() {
+        String sql = "SELECT COUNT(*) FROM " + DatabaseConsts.TABLE_BLOG_CATEGORY;
+        return DbRetrieveUtils.retrieveBasicTypeByParams(sql, null, Long.class);
+    }
+
+    @Override
     public Boolean isCategoryExits(String categoryName) {
-    String sql = "SELECT IFNULL((SELECT 'true' FROM " +
-            DatabaseConsts.TABLE_BLOG_CATEGORY + " WHERE " + DatabaseConsts.CATEGORY_NAME + " = ? ), 'false')";
+        String sql = "SELECT IFNULL((SELECT 'true' FROM " +
+                DatabaseConsts.TABLE_BLOG_CATEGORY + " WHERE " + DatabaseConsts.CATEGORY_NAME + " = ? ), 'false')";
         ArrayList<Object> list = new ArrayList<>();
         list.add(categoryName);
         String isExist = DbRetrieveUtils.retrieveBasicTypeByParams(sql, list, String.class);

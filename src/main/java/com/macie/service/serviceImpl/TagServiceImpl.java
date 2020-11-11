@@ -14,7 +14,7 @@ import java.util.TreeMap;
  * @date 2020/10/29 -17:59
  */
 public class TagServiceImpl implements TagService, TagDao {
-    public static final TagDaoImpl tagDaoImpl = new TagDaoImpl();
+    private static final TagDaoImpl tagDaoImpl = new TagDaoImpl();
     @Override
     public TreeMap<Integer, ArrayList<TagVo>> getArticleTagMap(ArrayList<ArticleVo> articleVos) {
         TreeMap<Integer, ArrayList<TagVo>>  tMap = new TreeMap<>();
@@ -29,6 +29,11 @@ public class TagServiceImpl implements TagService, TagDao {
     @Override
     public ArrayList<TagVo> retrieveAllTags() {
         return tagDaoImpl.retrieveAllTags();
+    }
+
+    @Override
+    public Long countAllTags() {
+        return tagDaoImpl.countAllTags();
     }
 
     @Override

@@ -14,19 +14,19 @@ import java.util.ArrayList;
  * @date 2020/10/30 -17:19
  */
 public class ArticleUpdateServiceImpl implements ArticleUpdateService {
-    ArticleDaoImpl articleDaoImpl = new ArticleDaoImpl();
-    TagDaoImpl tagDaoImpl = new TagDaoImpl();
-    CategoryDaoImpl categoryDaoImpl = new CategoryDaoImpl();
+    private static final ArticleDaoImpl articleDaoImpl = new ArticleDaoImpl();
+    private static final TagDaoImpl tagDaoImpl = new TagDaoImpl();
+    private static final CategoryDaoImpl categoryDaoImpl = new CategoryDaoImpl();
 
     @Override
     public ArticleVo publishArticle(ArticleVo articleVo, ArrayList<String> tagList, String publishType) {
-        if(articleVo == null || publishType == null) {
+        if (articleVo == null || publishType == null) {
             return null;
         }
         Integer articleId = null;
         // 若是创造了新的分类，先将此分类信息插入数据库中
         String categoryName = articleVo.getCategoryName();
-        if(!categoryDaoImpl.isCategoryExits(categoryName)) {
+        if (!categoryDaoImpl.isCategoryExits(categoryName)) {
             CategoryVo categoryVo = new CategoryVo();
             categoryVo.setCategoryName(categoryName);
             categoryDaoImpl.insertNewCategory(categoryVo);

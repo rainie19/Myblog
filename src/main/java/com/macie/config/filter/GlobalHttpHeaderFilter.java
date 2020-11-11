@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * 预处理CharsetEncoding和Content-Type
  * @author Macie
- * @date 2020/11/29 -20:42
+ * @date 2020/10/29 -20:42
  */
 public class GlobalHttpHeaderFilter implements Filter {
     private static String encoding;

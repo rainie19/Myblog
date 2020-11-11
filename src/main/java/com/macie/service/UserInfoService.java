@@ -9,7 +9,8 @@ import com.macie.dao.daoImpl.UserInfoDaoImpl;
  * @date 2020/9/30 -21:08
  */
 public class UserInfoService implements UserInfoDao {
-    UserInfoDaoImpl userInfoDaoImpl = new UserInfoDaoImpl();
+    private static final UserInfoDaoImpl userInfoDaoImpl = new UserInfoDaoImpl();
+
     @Override
     public UserInfoVo retrieveUserInfoByUserName(String userName) {
         return userInfoDaoImpl.retrieveUserInfoByUserName(userName);

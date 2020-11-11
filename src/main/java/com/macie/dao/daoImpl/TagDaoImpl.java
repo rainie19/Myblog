@@ -20,6 +20,12 @@ public class TagDaoImpl implements TagDao {
     }
 
     @Override
+    public Long countAllTags() {
+        String sql = "SELECT COUNT(DISTINCT " + DatabaseConsts.TAG_NAME + ") FROM " + DatabaseConsts.TABLE_TAGS;
+        return DbRetrieveUtils.retrieveBasicTypeByParams(sql, null, Long.class);
+    }
+
+    @Override
     public ArrayList<TagVo> retrieveTagsByArticleId(Integer articleId) {
         String sql = "SELECT " + DatabaseConsts.TAG_CONNECT_ID + ", " +
                 DatabaseConsts.ARTICLE_ID + ", " +
@@ -73,16 +79,6 @@ public class TagDaoImpl implements TagDao {
         list.add(articleId);
         list.add(tagName);
         return DbChangeUtils.changeDatabase(sql, list);
-    }
-
-    public int insertTagsByArticleTitle(String articleTitle) {
-        String sql = "INSERT INTO " + DatabaseConsts.TABLE_ARTICLE__TAGS + "(" +
-                DatabaseConsts.ARTICLE_ID + ", " +
-                DatabaseConsts.TAG_ID + ") SELECT " +
-                DatabaseConsts.ARTICLE_ID + ", " + DatabaseConsts.TAG_ID+ " FROM " +
-                DatabaseConsts.TABLE_ARTICLE_DETAILS + ", " + DatabaseConsts.TABLE_TAGS + " WHERE " +
-                DatabaseConsts.ARTICLE_TITLE + " = ? AND " + DatabaseConsts.TAG_NAME + " = ?";
-        return 0;
     }
 
     @Override

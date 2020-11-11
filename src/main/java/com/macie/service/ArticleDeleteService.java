@@ -2,7 +2,7 @@ package com.macie.service;
 
 /**
  * @author Macie
- * @date 2020/11/29 -10:24
+ * @date 2020/10/29 -10:24
  */
 public interface ArticleDeleteService {
     /**

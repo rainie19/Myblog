@@ -34,7 +34,6 @@ public class DatabaseConsts {
     /* constants in table tags */
     public static final String TABLE_TAGS = "tags";
     public static final String TAG_CONNECT_ID = "tag_connect_id";
-    public static final String TAG_ID = "tag_id";
     public static final String TAG_NAME = "tag_name";
 
     /* constants in table article__tags */

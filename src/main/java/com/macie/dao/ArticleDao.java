@@ -10,13 +10,14 @@ import java.util.ArrayList;
  */
 public interface ArticleDao {
     /**
+     * 查询所有文章信息
      *
      * @return 所有文章信息
      */
     public ArrayList<ArticleVo> listAllArticles();
 
     /**
-     * 返回某一页的文章
+     * 查询某一页的文章信息
      * @return
      */
     public ArrayList<ArticleVo> listArticlesPerPage(Integer pageNumber, int pageSize);
@@ -61,6 +62,7 @@ public interface ArticleDao {
      * @return
      */
     public ArticleVo getPreviousArticle(Integer articleId);
+
     /**
      * 查找下一篇文章
      * @param articleId
@@ -70,19 +72,23 @@ public interface ArticleDao {
 
     /**
      * 获取文章总数
+     *
      * @return
      */
-    public Long getArticlesTotalCount();
+    public Long countAllArticles();
 
     /**
      * 获取某个type下的所有文章数
-     * @param type 分类或标签
+     *
+     * @param type  分类或标签
      * @param value
      * @return
      */
-    public Long getArticlesTotalCount(String type, String value);
+    public Long countAllArticles(String type, String value);
+
     /**
-     *获取某分类下的所有文章
+     * 获取某分类下的所有文章
+     *
      * @return 某分类下的所有文章
      */
     public ArrayList<ArticleVo> listArticlesByCategoryName(String categoryName);

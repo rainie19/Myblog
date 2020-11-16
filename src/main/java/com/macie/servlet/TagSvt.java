@@ -1,7 +1,7 @@
 package com.macie.servlet;
 
 import com.macie.bean.vo.TagVo;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.serviceImpl.TagServiceImpl;
 
 import javax.servlet.ServletException;
@@ -30,9 +30,9 @@ public class TagSvt extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         TagServiceImpl tagService = new TagServiceImpl();
-        ArrayList<TagVo> tagVos = tagService.retrieveAllTags();
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseOK("tags", tagVos);
-        out.println(jsonReponse);
+        ArrayList<TagVo> tagVos = tagService.listAllTags();
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseOK("tags", tagVos);
+        out.println(jsonResponse);
     }
 }

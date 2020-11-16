@@ -1,6 +1,6 @@
 package com.macie.servlet;
 
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.serviceImpl.ArticleDeleteServiceImpl;
 
 import javax.servlet.ServletException;
@@ -22,14 +22,14 @@ public class ArticleDeleteSvt extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         Integer articleId = null;
-        if(req.getParameter("articleId") != null) {
+        if (req.getParameter("articleId") != null) {
             articleId = Integer.parseInt(req.getParameter("articleId"));
         }
         ArticleDeleteServiceImpl articleService = new ArticleDeleteServiceImpl();
         articleService.deleteArticle(articleId);
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseOK();
-        out.println(jsonReponse);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseOK();
+        out.println(jsonResponse);
     }
 
     @Override

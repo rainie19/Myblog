@@ -2,7 +2,7 @@ package com.macie.servlet;
 
 import com.macie.bean.vo.ArticleVo;
 import com.macie.bean.vo.TagVo;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.helper.ResponseCode;
 import com.macie.service.serviceImpl.ArticleServiceImpl;
 import com.macie.service.serviceImpl.TagServiceImpl;
@@ -42,17 +42,21 @@ public class ArticleSvt extends HttpServlet {
 
         Long totalCount = articleService.countArticles(queryType, queryName);
         ArrayList<ArticleVo> articleVos = articleService.listArticles(queryType, queryPage, pageSize, queryName);
+        for (ArticleVo article : articleVos) {
+            System.out.println(article.getArticleCreateTime());
+        }
         TreeMap<Integer, ArrayList<TagVo>> articleTagMap = null;
         if (articleVos != null) {
             articleTagMap = tagService.getArticleTagMap(articleVos);
         }
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseData("articles", articleVos);
-        jsonReponse.setResponseData("articleTotalCount", totalCount);
-        jsonReponse.setResponseData("articleIdTagsMap", articleTagMap);
-        jsonReponse.setResponseCode(ResponseCode.CODE_SUCCESS);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseData("articles", articleVos);
+        System.out.println(jsonResponse);
+        jsonResponse.setResponseData("articleTotalCount", totalCount);
+        jsonResponse.setResponseData("articleIdTagsMap", articleTagMap);
+        jsonResponse.setResponseCode(ResponseCode.CODE_SUCCESS);
 
-        out.println(jsonReponse);
+        out.println(jsonResponse);
     }
 
     @Override

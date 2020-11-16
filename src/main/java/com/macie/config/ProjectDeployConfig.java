@@ -9,16 +9,21 @@ import java.io.File;
  * @date 2020/11/9 -1:08
  */
 public class ProjectDeployConfig {
-    public static Boolean IS_REMOTE_DEPLOY = null;
 
 
-    /** 工程部署路径,如 本地为 web\WebContent\, 服务器为/web  **/
+    /**
+     * 工程部署路径,如 windows上为 MyBlog\webapp, 服务器为/MyBlog的绝对路径
+     **/
     public static File WEB_DEPLOY_PATH;
 
-    /** 工程根目录路径 ,web的同级目录 **/
+    /**
+     * 工程根目录路径 ,MyBlog的同级目录
+     **/
     public static String WEB_ROOT_PATH;
 
-    /** 图片上传路径 **/
+    /**
+     * 图片上传路径
+     **/
     public static String IMAGE_PATH;
 
     /**

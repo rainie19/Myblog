@@ -1,7 +1,7 @@
 package com.macie.servlet;
 
 import com.macie.bean.vo.UserInfoVo;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.UserInfoService;
 
 import javax.servlet.ServletException;
@@ -26,9 +26,9 @@ public class UserInfoSvt extends HttpServlet {
         String userName = req.getParameter("userName");
         UserInfoService userInfoService = new UserInfoService();
         UserInfoVo userInfoVo = userInfoService.retrieveUserInfoByUserName(userName);
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseOK("userInfo", userInfoVo);
-        out.println(jsonReponse);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseOK("userInfo", userInfoVo);
+        out.println(jsonResponse);
 
 
     }

@@ -18,11 +18,14 @@ public interface ArticleDao {
 
     /**
      * 查询某一页的文章信息
+     *
      * @return
      */
-    public ArrayList<ArticleVo> listArticlesPerPage(Integer pageNumber, int pageSize);
+    public ArrayList<ArticleVo> listArticlesPerPage(Integer pageNumber, Integer pageSize);
+
     /**
      * 根据articl_id查询文章信息
+     *
      * @param articleId
      * @return 具体博客
      */

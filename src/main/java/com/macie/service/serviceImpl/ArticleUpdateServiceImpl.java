@@ -26,7 +26,7 @@ public class ArticleUpdateServiceImpl implements ArticleUpdateService {
         Integer articleId = null;
         // 若是创造了新的分类，先将此分类信息插入数据库中
         String categoryName = articleVo.getCategoryName();
-        if (!categoryDaoImpl.isCategoryExits(categoryName)) {
+        if (!categoryDaoImpl.isCategoryExists(categoryName)) {
             CategoryVo categoryVo = new CategoryVo();
             categoryVo.setCategoryName(categoryName);
             categoryDaoImpl.insertNewCategory(categoryVo);

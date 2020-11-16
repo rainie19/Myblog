@@ -12,12 +12,11 @@ public interface CategoryDao {
     /**
      * @return 所有分类
      */
-    public ArrayList<CategoryVo> retrieveAllCategories();
+    public ArrayList<CategoryVo> listAllCategories();
 
 
     /**
      * 获取分类总数
-     *
      * @return
      */
     public Long countAllCategories();
@@ -46,8 +45,9 @@ public interface CategoryDao {
 
     /**
      * 查询分类是否存在
+     *
      * @param categoryName
      * @return
      */
-    public Boolean isCategoryExits(String categoryName);
+    public Boolean isCategoryExists(String categoryName);
 }

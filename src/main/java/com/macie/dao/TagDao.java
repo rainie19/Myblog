@@ -10,10 +10,9 @@ import java.util.ArrayList;
  */
 public interface TagDao {
     /**
-     *
      * @return
      */
-    public ArrayList<TagVo> retrieveAllTags();
+    public ArrayList<TagVo> listAllTags();
 
     /**
      *

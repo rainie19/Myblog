@@ -1,6 +1,6 @@
 package com.macie.config.filter;
 
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.helper.ResponseCode;
 import com.macie.service.UserInfoService;
 
@@ -51,9 +51,9 @@ public class LoginFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         }
         else {
-            JsonReponseHelper jsonReponse = new JsonReponseHelper();
-            jsonReponse.setResponseCode(ResponseCode.CODE_ILLEGAL_TOKEN);
-            response.getWriter().println(jsonReponse);
+            JsonResponseHelper jsonResponse = new JsonResponseHelper();
+            jsonResponse.setResponseCode(ResponseCode.CODE_ILLEGAL_TOKEN);
+            response.getWriter().println(jsonResponse);
         }
 
     }

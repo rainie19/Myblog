@@ -24,7 +24,7 @@ public class ImageUploadHelper {
             return null;
         }
         try {
-            String imageSaveDir = ProjectDeployConfig.IMAGE_PATH + "/" + path;
+            String imageSaveDir = ProjectDeployConfig.IMAGE_PATH + path;
             File dir = new File(imageSaveDir);
             if (!dir.exists() && !dir.isDirectory()) {
                 // 创建目录

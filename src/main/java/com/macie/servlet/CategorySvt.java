@@ -1,7 +1,7 @@
 package com.macie.servlet;
 
 import com.macie.bean.vo.CategoryVo;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.CategoryService;
 
 import javax.servlet.ServletException;
@@ -26,17 +26,17 @@ public class CategorySvt extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         CategoryService categoryService = new CategoryService();
-        ArrayList<CategoryVo> categoryVos = categoryService.retrieveAllCategories();
+        ArrayList<CategoryVo> categoryVos = categoryService.listAllCategories();
         TreeMap<String, Long> articlesCount = null;
         if (categoryVos != null) {
             articlesCount = categoryService.countArticlesEachCategory(categoryVos);
         }
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseData("categories", categoryVos);
-        jsonReponse.setResponseData("articlesCount", articlesCount);
-        jsonReponse.setResponseOK();
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseData("categories", categoryVos);
+        jsonResponse.setResponseData("articlesCount", articlesCount);
+        jsonResponse.setResponseOK();
 
-        out.println(jsonReponse);
+        out.println(jsonResponse);
     }
 
 

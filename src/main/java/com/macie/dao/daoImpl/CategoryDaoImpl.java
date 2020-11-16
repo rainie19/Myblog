@@ -16,10 +16,10 @@ import java.util.Date;
 public class CategoryDaoImpl implements CategoryDao {
 
     @Override
-    public ArrayList<CategoryVo> retrieveAllCategories() {
+    public ArrayList<CategoryVo> listAllCategories() {
         String sql = "SELECT " + DatabaseConsts.CATEGORY_ID + ", " + DatabaseConsts.CATEGORY_NAME +
                 " FROM " + DatabaseConsts.TABLE_BLOG_CATEGORY;
-        return DbRetrieveUtils.retrieveBeanListByParams(sql, null ,CategoryVo.class);
+        return DbRetrieveUtils.retrieveBeanListByParams(sql, null, CategoryVo.class);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public Boolean isCategoryExits(String categoryName) {
+    public Boolean isCategoryExists(String categoryName) {
         String sql = "SELECT IFNULL((SELECT 'true' FROM " +
                 DatabaseConsts.TABLE_BLOG_CATEGORY + " WHERE " + DatabaseConsts.CATEGORY_NAME + " = ? ), 'false')";
         ArrayList<Object> list = new ArrayList<>();

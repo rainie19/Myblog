@@ -1,5 +1,6 @@
 package com.macie.servlet;
 
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.serviceImpl.TagServiceImpl;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,9 @@ public class TagDeleteSvt extends HttpServlet {
         TagServiceImpl tagService = new TagServiceImpl();
         String tagName = req.getParameter("tagName");
         tagService.deleteTag(tagName);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseOK();
+        out.println(jsonResponse);
     }
 
     @Override

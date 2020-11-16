@@ -2,7 +2,7 @@ package com.macie.servlet;
 
 import com.macie.bean.vo.ArticleVo;
 import com.macie.bean.vo.TagVo;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.helper.ResponseCode;
 import com.macie.service.serviceImpl.ArticleServiceImpl;
 import com.macie.service.serviceImpl.TagServiceImpl;
@@ -26,7 +26,9 @@ public class ArticleDetailSvt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-
+        if (req.getParameter("articleId") == null) {
+            return;
+        }
         Integer articleId = Integer.parseInt(req.getParameter("articleId"));
         ArticleServiceImpl articleService = new ArticleServiceImpl();
         TagServiceImpl tagService = new TagServiceImpl();
@@ -38,13 +40,13 @@ public class ArticleDetailSvt extends HttpServlet {
         ArticleVo prevArticleVo = articleService.getPreviousArticle(articleId);
         ArticleVo nextArticleVo = articleService.getNextArticle(articleId);
 
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseData("article", articleVo);
-        jsonReponse.setResponseData("prevArticle", prevArticleVo);
-        jsonReponse.setResponseData("nextArticle", nextArticleVo);
-        jsonReponse.setResponseData("tags", tagVoArrayList);
-        jsonReponse.setResponseCode(ResponseCode.CODE_SUCCESS);
-        out.println(jsonReponse);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseData("article", articleVo);
+        jsonResponse.setResponseData("prevArticle", prevArticleVo);
+        jsonResponse.setResponseData("nextArticle", nextArticleVo);
+        jsonResponse.setResponseData("tags", tagVoArrayList);
+        jsonResponse.setResponseCode(ResponseCode.CODE_SUCCESS);
+        out.println(jsonResponse);
         // response返回后增加文章阅读次数
         articleService.updateArticleViewCount(articleId);
 

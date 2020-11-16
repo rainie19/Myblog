@@ -1,6 +1,6 @@
 package com.macie.servlet;
 
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.UserInfoService;
 
 import javax.servlet.ServletException;
@@ -26,15 +26,15 @@ public class LoginSvt extends HttpServlet {
         String passWord = req.getParameter("password");
         UserInfoService userInfoService = new UserInfoService();
         String decodePwd = userInfoService.retrievePwdByUserName(userName);
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
         if(decodePwd != null && decodePwd.equals(passWord)) {
-            jsonReponse.setResponseOK("token", passWord);
+            jsonResponse.setResponseOK("token", passWord);
             req.getSession().setAttribute("userName", userName);
         }
         else {
-            jsonReponse.setResponseFailed("账号或密码错误");
+            jsonResponse.setResponseFailed("账号或密码错误");
         }
-        out.println(jsonReponse);
+        out.println(jsonResponse);
     }
 
     @Override

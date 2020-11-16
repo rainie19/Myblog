@@ -2,7 +2,7 @@ package com.macie.servlet;
 
 import com.macie.common.CommonConstants;
 import com.macie.helper.ImageUploadHelper;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -20,7 +20,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * 上传图片
@@ -33,7 +32,7 @@ public class ImageUploadSvt extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
         try {
             // 获取multipart/formdata方式上传的表单
             DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -46,10 +45,9 @@ public class ImageUploadSvt extends HttpServlet {
 
                 } else {
                     if ("image".equals(fileItem.getFieldName())) {
-                        UUID randomUUID = UUID.randomUUID();
                         String itemName = fileItem.getName();
                         if (itemName == null) {
-                            jsonReponse.setResponseFailed("图片上传错误");
+                            jsonResponse.setResponseFailed("图片上传错误");
                             return;
                         }
                         // 获取后缀名
@@ -65,10 +63,10 @@ public class ImageUploadSvt extends HttpServlet {
                         byte[] image = fileItem.get();
 
                         String imageUrl = ImageUploadHelper.saveImage(image, CommonConstants.IMAGE_UPLOAD_PATH_ARTICLE, filename);
-                        jsonReponse.setResponseOK("imageUrl", imageUrl);
+                        jsonResponse.setResponseOK("imageUrl", imageUrl);
 
                     }
-                    out.println(jsonReponse);
+                    out.println(jsonResponse);
                 }
             }
 

@@ -1,7 +1,7 @@
 package com.macie.servlet;
 
 import com.macie.bean.vo.ArticleVo;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.serviceImpl.ArticleUpdateServiceImpl;
 
 import javax.servlet.ServletException;
@@ -28,17 +28,16 @@ public class ArticleUpdateSvt extends HttpServlet {
         String articleDetail = req.getParameter("article");
         String publishType = req.getParameter("publishType");
         String dynamicTags = req.getParameter("dynamicTags");
-        System.out.println("dynamicTags: "+dynamicTags);
         ArticleUpdateServiceImpl articleUpdateService = new ArticleUpdateServiceImpl();
-        JsonReponseHelper jsonObject = new JsonReponseHelper();
+        JsonResponseHelper jsonObject = new JsonResponseHelper();
         ArticleVo articleVo = jsonObject.convertJson2Bean(articleDetail, ArticleVo.class);
         ArrayList<String> tagList = jsonObject.convertString2Array(dynamicTags);
         ArticleVo responseArticleVo = articleUpdateService.publishArticle(articleVo, tagList, publishType);
 
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseData("article", responseArticleVo);
-        jsonReponse.setResponseOK();
-        out.println(jsonReponse);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseData("article", responseArticleVo);
+        jsonResponse.setResponseOK();
+        out.println(jsonResponse);
 
     }
 

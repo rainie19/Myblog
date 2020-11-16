@@ -17,8 +17,8 @@ public class CategoryService implements CategoryDao {
     private static final ArticleDaoImpl articleDaoImpl = new ArticleDaoImpl();
 
     @Override
-    public ArrayList<CategoryVo> retrieveAllCategories() {
-        return categoryDaoImpl.retrieveAllCategories();
+    public ArrayList<CategoryVo> listAllCategories() {
+        return categoryDaoImpl.listAllCategories();
     }
 
     @Override
@@ -42,8 +42,8 @@ public class CategoryService implements CategoryDao {
     }
 
     @Override
-    public Boolean isCategoryExits(String categoryName) {
-        return categoryDaoImpl.isCategoryExits(categoryName);
+    public Boolean isCategoryExists(String categoryName) {
+        return categoryDaoImpl.isCategoryExists(categoryName);
     }
 
     public TreeMap<String, Long> countArticlesEachCategory(ArrayList<CategoryVo> categoryVos) {

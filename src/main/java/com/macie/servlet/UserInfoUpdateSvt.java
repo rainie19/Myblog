@@ -3,7 +3,7 @@ package com.macie.servlet;
 import com.macie.bean.vo.UserInfoVo;
 import com.macie.common.CommonConstants;
 import com.macie.helper.ImageUploadHelper;
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.helper.ResponseCode;
 import com.macie.service.serviceImpl.UserInfoUpdateServiceImpl;
 import org.apache.commons.fileupload.FileItem;
@@ -34,7 +34,7 @@ public class UserInfoUpdateSvt extends HttpServlet {
         /*
         ServletInputStream inputStream = req.getInputStream();
         StringBuffer stringBuffer = new StringBuffer();
-        JsonReponseHelper jsonObject = new JsonReponseHelper();
+        jsonResponseHelper jsonObject = new jsonResponseHelper();
         int len = 0;
         byte[] b = new byte[1024];
         while((len = inputStream.read(b)) != -1) {
@@ -77,9 +77,9 @@ public class UserInfoUpdateSvt extends HttpServlet {
                     }
                 }
             }
-            JsonReponseHelper jsonObject = new JsonReponseHelper();
+            JsonResponseHelper jsonObject = new JsonResponseHelper();
             String rootPath = req.getServletContext().getRealPath("/");
-            JsonReponseHelper jsonReponse = new JsonReponseHelper();
+            JsonResponseHelper jsonResponse = new JsonResponseHelper();
             if("profile".equals(type)) {
                 String oldUserName = userInfoMap.get("oldUserName");
                 String newUserName = userInfoMap.get("userName");
@@ -92,10 +92,10 @@ public class UserInfoUpdateSvt extends HttpServlet {
                 UserInfoVo userInfoVo = jsonObject.convertJson2Bean(jsonObject.toString(), UserInfoVo.class);
                 userInfoUpdate.updateProfile(userInfoVo, oldUserName);
                 if(oldUserName.equals(newUserName)) {
-                    jsonReponse.setResponseOK();
+                    jsonResponse.setResponseOK();
                 }
                 else {
-                    jsonReponse.setResponseCode(ResponseCode.CODE_CHANGED_ACCOUNT);
+                    jsonResponse.setResponseCode(ResponseCode.CODE_CHANGED_ACCOUNT);
                 }
             }
             else if("account".equals(type)) {
@@ -103,13 +103,13 @@ public class UserInfoUpdateSvt extends HttpServlet {
                 String oldPassWd = userInfoMap.get("oldPassWd");
                 String newPassWd = userInfoMap.get("newPassWd");
                 if(userInfoUpdate.updatePassWord(userName,oldPassWd, newPassWd)) {
-                    jsonReponse.setResponseCode(ResponseCode.CODE_CHANGED_ACCOUNT);
+                    jsonResponse.setResponseCode(ResponseCode.CODE_CHANGED_ACCOUNT);
                 }
                 else {
-                    jsonReponse.setResponseFailed("原密码错误，请重新输入！");
+                    jsonResponse.setResponseFailed("原密码错误，请重新输入！");
                 }
             }
-            out.println(jsonReponse);
+            out.println(jsonResponse);
 
         }catch (Exception e) {
             e.printStackTrace();

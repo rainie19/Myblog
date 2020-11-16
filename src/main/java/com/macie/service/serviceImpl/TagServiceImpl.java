@@ -27,8 +27,8 @@ public class TagServiceImpl implements TagService, TagDao {
     }
 
     @Override
-    public ArrayList<TagVo> retrieveAllTags() {
-        return tagDaoImpl.retrieveAllTags();
+    public ArrayList<TagVo> listAllTags() {
+        return tagDaoImpl.listAllTags();
     }
 
     @Override

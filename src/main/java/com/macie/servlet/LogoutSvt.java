@@ -1,6 +1,6 @@
 package com.macie.servlet;
 
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,9 +25,9 @@ public class LogoutSvt extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseOK();
-        out.println(jsonReponse);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseOK();
+        out.println(jsonResponse);
     }
 }
 

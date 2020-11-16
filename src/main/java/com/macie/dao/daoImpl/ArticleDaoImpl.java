@@ -32,7 +32,7 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public ArrayList<ArticleVo> listArticlesPerPage(Integer pageNumber, int pageSize) {
+    public ArrayList<ArticleVo> listArticlesPerPage(Integer pageNumber, Integer pageSize) {
         String sql = "SELECT " + DatabaseConsts.ARTICLE_ID + ", " +
                 DatabaseConsts.ARTICLE_TITLE + ", " +
                 DatabaseConsts.ARTICLE_SLUG + ", " +

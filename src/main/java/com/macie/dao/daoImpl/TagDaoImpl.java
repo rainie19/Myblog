@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class TagDaoImpl implements TagDao {
     @Override
-    public ArrayList<TagVo> retrieveAllTags() {
+    public ArrayList<TagVo> listAllTags() {
         String sql = "SELECT *, COUNT(*) AS tag_count " + " FROM " + DatabaseConsts.TABLE_TAGS + " GROUP BY " + DatabaseConsts.TAG_NAME;
         return DbRetrieveUtils.retrieveBeanListByParams(sql, null, TagVo.class);
     }

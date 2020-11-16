@@ -1,6 +1,6 @@
 package com.macie.servlet;
 
-import com.macie.helper.JsonReponseHelper;
+import com.macie.helper.JsonResponseHelper;
 import com.macie.service.AllCountService;
 
 import javax.servlet.ServletException;
@@ -25,10 +25,10 @@ public class AllCountSvt extends HttpServlet {
         PrintWriter out = resp.getWriter();
         AllCountService articlesCountService = new AllCountService();
         TreeMap<String, Long> countMap = articlesCountService.getAllCount();
-        JsonReponseHelper jsonReponse = new JsonReponseHelper();
-        jsonReponse.setResponseOK("AllCount", countMap);
+        JsonResponseHelper jsonResponse = new JsonResponseHelper();
+        jsonResponse.setResponseOK("AllCount", countMap);
 
-        out.println(jsonReponse);
+        out.println(jsonResponse);
     }
 
 

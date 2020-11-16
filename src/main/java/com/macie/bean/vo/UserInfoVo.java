@@ -13,7 +13,6 @@ public class UserInfoVo {
     private Integer userAge;
     private Integer userGender;
     private String userAddress;
-    private String userHeadUrl;
     private String userNickName;
     private String userAvatarPath;
 
@@ -29,7 +28,6 @@ public class UserInfoVo {
                 ", userAge=" + userAge +
                 ", userGender=" + userGender +
                 ", userAddress='" + userAddress + '\'' +
-                ", userHeadUrl='" + userHeadUrl + '\'' +
                 ", userNickName='" + userNickName + '\'' +
                 ", userAvatar='" + userAvatarPath + '\'' +
                 '}';
@@ -105,14 +103,6 @@ public class UserInfoVo {
 
     public void setUserAddress(String userAddress) {
         this.userAddress = userAddress;
-    }
-
-    public String getUserHeadUrl() {
-        return userHeadUrl;
-    }
-
-    public void setUserHeadUrl(String userHeadUrl) {
-        this.userHeadUrl = userHeadUrl;
     }
 
     public String getUserNickName() {

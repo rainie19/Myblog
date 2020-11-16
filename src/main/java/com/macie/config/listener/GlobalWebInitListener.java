@@ -19,7 +19,6 @@ public class GlobalWebInitListener implements ServletContextListener {
         System.out.println("deployRootDir:" + deployRootDir);
         //将部署根目录赋值给全局变量
         ProjectDeployConfig.setGlobalVariable(deployRootDir);
-//        ProjectDeployConfig.setGlobalVariable(deployRootDir);
         //配置log4j
 //        new Log4j2Config().startLog4j2Config();
     }

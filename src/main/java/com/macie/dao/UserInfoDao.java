@@ -8,8 +8,16 @@ import com.macie.bean.vo.UserInfoVo;
  */
 public interface UserInfoDao {
 
-    public UserInfoVo retrieveUserInfoByUserName(String userName);
     /**
+     * 获取用户信息
+     *
+     * @param userName
+     * @return
+     */
+    public UserInfoVo retrieveUserInfoByUserName(String userName);
+
+    /**
+     * 获取密码
      *
      * @param userName
      * @return
@@ -17,6 +25,7 @@ public interface UserInfoDao {
     public String retrievePwdByUserName(String userName);
 
     /**
+     * 更新用户信息
      *
      * @param userInfoVo
      * @param oldUserName
@@ -25,6 +34,7 @@ public interface UserInfoDao {
     public int updateUserInfo(UserInfoVo userInfoVo, String oldUserName);
 
     /**
+     * 更新密码
      *
      * @param userName
      * @param newPwd

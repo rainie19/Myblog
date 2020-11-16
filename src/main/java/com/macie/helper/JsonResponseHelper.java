@@ -14,11 +14,12 @@ import java.util.Map;
 
 /**
  * json数据包装类
+ *
  * @author Macie
  * @date 2020/10/29 -11:20
  */
-public class JsonReponseHelper {
-    JSONObject jsonObject = new JSONObject();
+public class JsonResponseHelper {
+    private JSONObject jsonObject = new JSONObject();
 
     /**
      * 设置返回主体数据
@@ -139,7 +140,9 @@ public class JsonReponseHelper {
     public ArrayList<String> convertString2Array(String str) {
         ArrayList<String> strings = new ArrayList<>();
         JSONArray jsonArray = JSONArray.fromObject(str);
-        strings.addAll(jsonArray);
+        for (Object o : jsonArray) {
+            strings.add(String.valueOf(o));
+        }
         return strings;
     }
 

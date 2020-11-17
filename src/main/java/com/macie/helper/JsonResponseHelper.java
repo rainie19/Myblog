@@ -1,7 +1,9 @@
 package com.macie.helper;
 
+import com.macie.util.DateJsonValueProcessor;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -23,22 +25,24 @@ public class JsonResponseHelper {
 
     /**
      * 设置返回主体数据
+     *
      * @param paramName
      * @param paramData
      */
     public void setResponseData(String paramName, Object paramData) {
-        if(paramData instanceof Map) {
-            if(paramName != null) {
+        // 修改Date格式
+        JsonConfig config = new JsonConfig();
+        config.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor());
+        if (paramData instanceof Map) {
+            if (paramName != null) {
                 JSONObject o = new JSONObject();
-                o.accumulateAll((Map) paramData);
+                o.accumulateAll((Map) paramData, config);
                 jsonObject.accumulate(paramName, o);
+            } else {
+                jsonObject.accumulateAll((Map) paramData, config);
             }
-            else {
-                jsonObject.accumulateAll((Map)paramData);
-            }
-        }
-        else {
-            jsonObject.accumulate(paramName, paramData);
+        } else {
+            jsonObject.accumulate(paramName, paramData, config);
         }
     }
 
